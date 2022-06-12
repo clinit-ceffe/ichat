@@ -26,7 +26,7 @@
 </style>
 
 <script>
-   
+
 const mediaConstraints = {
     offerToReceiveAudio: true,
     offerToReceiveVideo: false
@@ -49,7 +49,7 @@ export default {
             if(typeof(WebSocket) === "undefined"){
                 alert("您的浏览器不支持socket")
             }else{
-                this.ws = new WebSocket("ws://192.168.38.1:8080/ws/"+ this.clientId);
+                this.ws = new WebSocket("ws://172.17.0.1:9099/ws/"+ this.clientId);
                 this.ws.onmessage  = this.onMessage;
                 this.ws.onopen = this.onOpen;
                 this.ws.onerror = this.onError;
@@ -82,7 +82,7 @@ export default {
 
                 this.peer.createAnswer().then(desc => {
                     this.peer.setLocalDescription(desc);
-                    this.send({desc}, 'answer');    
+                    this.send({desc}, 'answer');
                 }).catch(alert);
             }
             if( data.type == 'answer'){
@@ -94,7 +94,7 @@ export default {
                 console.log("处理 ice", data.candidate)
                 this.peer.addIceCandidate(data.candidate)
             }
-            
+
         },
         send: function (data, type) {
             console.log("发送消息类型：", type)
@@ -129,7 +129,7 @@ export default {
                     this.peer.setLocalDescription(desc);
                     this.send({desc}, 'offer');
                 }).catch(alert);
-            });                
+            });
         },
         handClose: function() {
             this.localStream.getTracks().forEach(track => track.stop());
@@ -145,4 +145,3 @@ export default {
     }
 }
 </script>
-   

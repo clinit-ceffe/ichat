@@ -115,7 +115,7 @@ export default {
     },
     methods: {
         createConnection() {
-            this.socket = new WebSocket("ws://127.0.0.1:9099/ws?" + this.self.id);
+            this.socket = new WebSocket("ws://172.17.0.1:9099/ws?" + this.self.id);
             this.socket.onmessage = this.onmessage;
             this.socket.onopen = console.log;
             this.socket.onerror = console.error;
@@ -225,7 +225,7 @@ export default {
 }
 
 .msg-layout{
-     line-height: 30px; 
+     line-height: 30px;
      padding: 3px 15px;
      box-sizing: border-box;
 }
@@ -239,9 +239,9 @@ export default {
 }
 
 .msg-bubble{
-    color: #444; 
-     font-size: 12px; 
-     font-weight: 500; 
+    color: #444;
+     font-size: 12px;
+     font-weight: 500;
      padding: 8px 12px;
      box-sizing: border-box;
      border-radius: 6px;
@@ -288,4 +288,4 @@ export default {
 .ant-notification-notice {
     border-radius: 6px;
 }
-</style> 
+</style>

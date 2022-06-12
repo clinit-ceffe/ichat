@@ -88,7 +88,7 @@ export default {
     },
     methods: {
         createConnection() {
-            this.socket = new WebSocket("ws://127.0.0.1:8080/ws/" + this.self.id);
+            this.socket = new WebSocket("ws://172.17.0.1:9099/ws/" + this.self.id);
             this.socket.onmessage = this.onmessage;
             this.socket.onopen = console.log;
             this.socket.onerror = console.error;
@@ -181,4 +181,4 @@ export default {
     background-color: #141414;
     user-select: pointer;
 }
-</style>    
+</style>

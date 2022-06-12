@@ -57,7 +57,7 @@
                         </template>
                         <template v-else>
                             <a-button type="primary" @click="send"> 发送消息 </a-button>
-                        </template>   
+                        </template>
                     </a-form-item>
                 </a-form>
              </a-card>
@@ -65,7 +65,7 @@
         </a-row>
     </main>
 </template>
- 
+
 <script>
 
 let message = {
@@ -77,7 +77,7 @@ let message = {
 export default {
     data () {
         return {
-            path:"ws://127.0.0.1:8098/ws",
+            path:"ws://172.17.0.1:9099/ws",
             socket:"",
             msg: "",
             alertMsg: "",
@@ -89,7 +89,7 @@ export default {
             session: {}
         }
     },
-    mounted () {    
+    mounted () {
         // 初始化
         this.init()
     },
@@ -179,7 +179,7 @@ export default {
     }
 }
 </script>
- 
+
 <style>
 body{
     background: #f3f3f361;

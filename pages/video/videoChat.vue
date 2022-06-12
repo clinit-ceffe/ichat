@@ -51,7 +51,7 @@ export default {
                 alert("您的浏览器不支持socket")
             }else{
                 // 实例化socket
-                this.socket = new WebSocket("ws:/localhost:8080/rtc/" + this.source)
+                this.socket = new WebSocket("ws:/172.17.0.1:9099/rtc/" + this.source)
                 // 监听socket连接
                 this.socket.onopen = this.open
                 // 监听socket错误信息
@@ -76,7 +76,7 @@ export default {
             //接受方
             if(data.type == 'offer'){
                 await this.createPeerConnection();
-            
+
                 this.remotePeer.setRemoteDescription(data.desc);
 
                 this.remotePeer.ontrack =  function(event) {
@@ -91,7 +91,7 @@ export default {
                     that.sendMessage({desc: desc}, desc.type);
                 })
 
-                    
+
                 this.remotePeer.onicecandidate = (event) => {
                     console.log("交换信令 remotePeer ", event.candidate)
                     if( event.candidate !== null ){
@@ -115,7 +115,7 @@ export default {
                 }
                 this.remotePeer.addIceCandidate(data.candidate);
             }
-           
+
         },
         sendMessage: function(data, type){
             console.log("发送 " + type)
@@ -124,7 +124,7 @@ export default {
         },
         cell(){
            this.openConn();
-        },  
+        },
         async createPeerConnection(){
             const that = this;
             await navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(stream => {
@@ -132,7 +132,7 @@ export default {
                 let configuration = {}
                 this.localPeer = new RTCPeerConnection(configuration);
                 this.remotePeer = new RTCPeerConnection(configuration);
-        
+
                 stream.getTracks().forEach(track => {
                     that.localPeer.addTrack(track, stream)
                 });
@@ -145,7 +145,7 @@ export default {
             }).catch(err => {
                 console.log(err);
             })
-           
+
         },
        async openConn(){
            const that = this;
@@ -179,4 +179,3 @@ export default {
     }
 }
 </script>
-   
