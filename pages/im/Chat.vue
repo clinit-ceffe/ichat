@@ -140,7 +140,7 @@ export default {
             }
         },
         send() {
-            if(ws.readyState != 1){
+            if(this.socket.readyState != 1){
                this.$notification.error({
                   message: "网络错误",
                   description: "网络连接异常，请刷新页面"
