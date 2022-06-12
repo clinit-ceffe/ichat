@@ -190,7 +190,9 @@ export default {
 [data-theme='dark'] .site-layout .site-layout-background {
     background: #141414;
 }
-
+.ant-layout-header{
+  background-color: #fff;
+}
 .context {
     background-color: #fff;
     padding: 24px;
