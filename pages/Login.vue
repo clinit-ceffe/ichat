@@ -1,9 +1,9 @@
 <template>
-  <div class="context" ref="context">
-    <a-card title="登陆" :bordered="false" class="login-wrap">
+  <div class="login">
+    <a-card title="欢迎登录" :bordered="false" class="login-wrap">
       <a-form
         :model="formState"
-        name="normal_login"
+        name="form"
         class="login-form"
         @submit="onSubmit"
         :form="form"
@@ -13,25 +13,21 @@
           name="username"
           :rules="[{ required: true, message: 'Please input your username!' }]"
         >
-          <a-input v-model="formState.userName" placeholder="登陆账号">
+          <a-input v-model="formState.userName" placeholder="登录账号">
           </a-input>
         </a-form-item>
-
         <a-form-item
           label="密码"
           name="password"
           :rules="[{ required: true, message: 'Please input your password!' }]"
         >
-          <a-input-password
-            v-model:value="formState.password"
-            placeholder="登陆密码"
-          >
+          <a-input-password v-model="formState.password" placeholder="登录密码">
           </a-input-password>
         </a-form-item>
 
         <a-form-item>
           <a-button type="primary" style="width: 100%" htmlType="submit"
-            >登陆</a-button
+            >登录</a-button
           >
         </a-form-item>
       </a-form>
@@ -51,11 +47,11 @@ export default {
       },
     };
   },
-  mounted(){
-  },
+  mounted() {},
   methods: {
     onSubmit(e) {
       e.preventDefault();
+      this.$message.loading("登录中...");
       this.form.validateFields((err) => {
         if (!err) {
           this.$axios
@@ -71,36 +67,43 @@ export default {
                   "userInfo",
                   JSON.stringify(resp)
                 );
-                console.log("用户信息已缓存", resp);
+                this.$message.destroy();
+                this.$message.info("登录成功");
                 this.$router.push("/");
               } else {
-                alert("登陆失败！");
+                this.$message.destroy();
+                this.$message.error("用户名或密码错误");
               }
             });
         }
       });
-    }
+    },
   },
 };
 </script>
-<style scoped>
+<style>
+html,
 body {
-  background: #ccc;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
 }
 
-.context {
-  width: 100%;
+.login {
+  height: 100vh;
   display: flex;
+  align-items: center;
   flex: 1;
-  margin: 0;
-  height: 100%;
-  background: #ccc;
+  background: rgb(250, 240, 240);
 }
 
 .login-wrap {
   width: 400px;
   height: 400px;
-  margin: 100px auto;
+  margin: auto;
   border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0 40px rgba(0, 0, 0, 0.3);
 }
 </style>
