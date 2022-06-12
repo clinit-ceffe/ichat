@@ -77,7 +77,7 @@ let message = {
 export default {
     data () {
         return {
-            path:"ws://172.17.0.1/ws",
+            path:"ws://43.142.114.37/ws",
             socket:"",
             msg: "",
             alertMsg: "",

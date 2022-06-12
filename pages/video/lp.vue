@@ -49,7 +49,7 @@ export default {
             if(typeof(WebSocket) === "undefined"){
                 alert("您的浏览器不支持socket")
             }else{
-                this.ws = new WebSocket("ws://172.17.0.1/ws/"+ this.clientId);
+                this.ws = new WebSocket("ws://43.142.114.37/ws/"+ this.clientId);
                 this.ws.onmessage  = this.onMessage;
                 this.ws.onopen = this.onOpen;
                 this.ws.onerror = this.onError;

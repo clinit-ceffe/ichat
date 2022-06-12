@@ -51,7 +51,7 @@ export default {
                 alert("您的浏览器不支持socket")
             }else{
                 // 实例化socket
-                this.socket = new WebSocket("ws:/172.17.0.1/rtc/" + this.source)
+                this.socket = new WebSocket("ws:/43.142.114.37/rtc/" + this.source)
                 // 监听socket连接
                 this.socket.onopen = this.open
                 // 监听socket错误信息
